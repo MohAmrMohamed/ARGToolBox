@@ -3,15 +3,30 @@ This project aims to allow solving ARGs to be easier and more fun by gathering m
 
 This all in one app should be able to decipher most common ciphers, decipher images, and decipher audio spectograms.
 
+## Features
 
-*Code Guidlines:*
-1. Create a new branch when adding anything new
-2. Always use camelCase when naming vairables, functions, or classes
-3. Always add a brief description of the cipher and comment extensively on each part of the code
-4. This project follows OOP structure which means each specefic decipher should be in a standalone file fore example ceaserCipher.py, base10Cypher.py, etc.
-5. GUI can only be made using Tkinter
+- Decipher common ciphers used in ARGs
+- Decode images embedded with hidden messages
+- Analyze and decipher audio spectograms
 
-This app is free for personal and commerical use, but crediting me will surely help :)
+## Usage
 
+1. Select the type of cipher or puzzle you want to solve from the main menu.
+2. Follow the on-screen instructions or input the necessary data.
+3. View the deciphered output or message.
+
+## Contribution Guidelines
+
+- Create a new branch for each new feature or bug fix.
+- Use camelCase for naming variables, functions, and classes.
+- Provide descriptive comments and follow the established coding style.
+- Each specific decipher should have its own standalone file following the OOP structure.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
+This app is free for personal and commerical use, but crediting will surely help :)
+
+You can reach me through mamrmohamedabdelaziz@gmail.com
 Thanks,
 Mohamed Amr
