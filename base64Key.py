@@ -25,10 +25,4 @@ class Base64Encoder:
         except b64.binascii.Error as e:
             return 'already decoded'
 
-# Gathers input from user
-inputText = input("text: ")
-instance = Base64Encoder(inputText)
-encoded_instance = instance.encodeBase64()
-print('encoded: ' + encoded_instance)
-decoded_instance = instance.decodeBase64()
-print('decoded: ' + decoded_instance)
+
