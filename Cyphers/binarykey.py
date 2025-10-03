@@ -10,3 +10,10 @@ def decryptBinary(text):
         return decrypted
     except ValueError:
         return "Error: Invalid binary input"
+    
+def encryptBinary(text):
+    try:
+        return ' '.join(format(ord(c), '08b') for c in text)
+    except Exception as e:
+        return f"Error: {e}"
+ 
