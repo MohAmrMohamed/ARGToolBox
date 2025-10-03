@@ -1,23 +1,10 @@
-# This function will turn the input binary text into a utf-8 encoded output 
-
-def binaryToText(binary):
-    try:
-        # Each byte will be split and spaces will be removed
-        binaryList = binary.split()
-        # initalizing list to add converted words into
-        completeText = []
-        # For loop that converts each byte then adds them to the list
-        for byte in binaryList:
-            letter = str(chr(int(byte, 2)))
-            completeText.append(letter)
-        # Converts the list into one string
-        string = ''.join(completeText)
-        return(string)
-
-    except ValueError:
-        print('That is not binary')
-
-    except AttributeError:
-        print('That is not binary')
-
-    
+def decryptBinary(text): 
+    Charachters = text
+    chunks = Charachters.split()
+    decrypted = ""
+    for chunk in chunks:
+        num = int(chunk, 2)
+        letter = chr(num)
+        decrypted += letter
+    return decrypted
+print(decryptBinary("00110001 00110010 00110011"))

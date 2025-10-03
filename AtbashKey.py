@@ -1,4 +1,4 @@
-def decryptBASE64(text): 
+def decryptAtbash(text): 
     Charachters = list(text.upper())
     decrypted = ""
     for char in Charachters:
