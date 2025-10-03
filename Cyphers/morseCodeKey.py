@@ -19,14 +19,19 @@ MORSE_TO_TEXT = {
 }
 
 def decryptMorse(text):
-    text = re.sub(r"\s{2,}", "   ", text)
-    words = text.split("   ")
-    decrypted = ""
-    for word in words:
-        chunks = word.split(" ")
-        for chunk in chunks:
-            letter = MORSE_TO_TEXT[chunk]
-            decrypted += letter
-        decrypted += " "
-    return decrypted
-
+    try:
+        text = re.sub(r"\s{2,}", "   ", text)
+        words = text.split("   ")
+        decrypted = ""
+        for word in words:
+            chunks = word.split(" ")
+            for chunk in chunks:
+                if chunk in MORSE_TO_TEXT:
+                    letter = MORSE_TO_TEXT[chunk]
+                    decrypted += letter
+                else:
+                    decrypted += "?"  
+            decrypted += " "
+        return decrypted.strip()
+    except Exception as e:
+        return f"An error occurred: {e}"
