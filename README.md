@@ -17,9 +17,6 @@ This all in one app should be able to decipher most common ciphers, decipher ima
 
 ## TODO
 
-1. Add GUI
-2. Add encoding option
-3. Stress test phase 1 cyphers
 4. Add more cyphers
 5. Add audio spectograms
 6. Add image deecoders (with metadata too)
