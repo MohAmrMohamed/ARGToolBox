@@ -12,8 +12,8 @@ This all in one app should be able to decipher most common ciphers, decipher ima
 ## Usage
 
 1. Select the type of cipher or puzzle you want to solve from the main menu. 
-2. Follow the on-screen instructions or input the necessary data.
-3. View the deciphered output or message.
+2. Follow the on-screen instructions and input the necessary data.
+3. View the deciphered output.
 
 ## TODO
 
@@ -25,9 +25,6 @@ This all in one app should be able to decipher most common ciphers, decipher ima
 
 This project used some references from chatgpt to check code, help resolve errors, and help build the GUI
 
-## License
-
-This project is licensed under the [MIT License](LICENSE).
 This app is free for personal and commerical use, but crediting will surely help :)
 
 You can reach me through mamrmohamedabdelaziz@gmail.com
