@@ -1,5 +1,5 @@
 """
-ARGToolBox GUI
+ARGToolBox GUI - Improved Layout
 
 This GUI gathers all cipher decoders and provides a user-friendly interface.
 
@@ -15,7 +15,7 @@ HOW TO ADD A NEW CIPHER:
 import tkinter as tk
 from tkinter import ttk, messagebox
 
-# Import your cipher functions
+# Import cipher functions
 from Cyphers.CeaserKey import decryptCeaser
 from Cyphers.Rot13Key import decryptROT13
 from Cyphers.AtbashKey import decryptAtbash
@@ -24,7 +24,7 @@ from Cyphers.binarykey import decryptBinary
 from Cyphers.HexKEY import decryptHEX
 from Cyphers.morseCodeKey import decryptMorse
 
-# --- Function to run when "Decode" button is clicked ---
+# --- Functions ---
 def run_decoder():
     cipher = cipher_choice.get()
     text = input_text.get("1.0", tk.END).strip()
@@ -56,55 +56,68 @@ def run_decoder():
         elif cipher == "Hex":
             result = decryptHEX(text)
 
-        # Show result in read-only Text widget
-        output_text.config(state="normal")   # temporarily enable editing
+        # Display result in read-only output
+        output_text.config(state="normal")
         output_text.delete("1.0", tk.END)
         output_text.insert(tk.END, result)
-        output_text.config(state="disabled")  # disable editing
+        output_text.config(state="disabled")
 
     except Exception as e:
         messagebox.showerror("Error", f"An error occurred: {e}")
 
-# --- Function to toggle shift box visibility ---
 def toggle_shift_box(event):
     if cipher_choice.get() == "Caesar":
-        shift_label.pack(pady=5)
-        shift_entry.pack()
+        shift_frame.pack(fill="x", pady=5)
     else:
-        shift_label.pack_forget()
-        shift_entry.pack_forget()
+        shift_frame.pack_forget()
 
-# --- Tkinter GUI setup ---
+# --- Main GUI ---
 root = tk.Tk()
 root.title("ARGToolBox Decoder")
-root.geometry("500x450")
+root.geometry("600x500")
+root.resizable(False, False)
+root.configure(bg="#f0f0f0")
 
-# Cipher selection
-tk.Label(root, text="Select Cipher:").pack(pady=5)
-cipher_choice = ttk.Combobox(root, values=[
+# --- Cipher Selection Frame ---
+cipher_frame = tk.LabelFrame(root, text="Cipher Selection", padx=10, pady=10, font=("Arial", 10, "bold"))
+cipher_frame.pack(fill="x", padx=15, pady=10)
+
+tk.Label(cipher_frame, text="Select Cipher:", font=("Arial", 10)).pack(side="left", padx=(0,5))
+cipher_choice = ttk.Combobox(cipher_frame, values=[
     "Caesar", "ROT13", "Atbash", "Base64", "Morse Code", "Binary", "Hex"
-])
-cipher_choice.pack()
+], width=20, font=("Arial", 10))
+cipher_choice.pack(side="left")
 cipher_choice.current(0)
 cipher_choice.bind("<<ComboboxSelected>>", toggle_shift_box)
 
-# Shift entry (only used by Caesar)
-shift_label = tk.Label(root, text="Shift (only for Caesar):")
-shift_entry = tk.Entry(root)
-toggle_shift_box(None)  # initial toggle
+# Shift frame inside cipher selection
+shift_frame = tk.Frame(cipher_frame)
+shift_label = tk.Label(shift_frame, text="Shift (only for Caesar):", font=("Arial", 10))
+shift_entry = tk.Entry(shift_frame, width=5, font=("Arial", 10))
+shift_label.pack(side="left", padx=(10,5))
+shift_entry.pack(side="left")
+if cipher_choice.get() != "Caesar":
+    shift_frame.pack_forget()
+else:
+    shift_frame.pack(side="left", padx=10)
 
-# Input text
-tk.Label(root, text="Input Text:").pack(pady=5)
-input_text = tk.Text(root, height=5, width=50)
-input_text.pack()
+# --- Input Frame ---
+input_frame = tk.LabelFrame(root, text="Input Text", padx=10, pady=10, font=("Arial", 10, "bold"))
+input_frame.pack(fill="both", padx=15, pady=10, expand=True)
 
-# Decode button
-decode_button = tk.Button(root, text="Decode", command=run_decoder)
+input_text = tk.Text(input_frame, height=7, width=70, font=("Arial", 10), wrap="word")
+input_text.pack(fill="both", expand=True)
+
+# --- Decode Button ---
+decode_button = tk.Button(root, text="Decode", command=run_decoder, font=("Arial", 12, "bold"),
+                          bg="#4CAF50", fg="white", relief="raised", padx=10, pady=5)
 decode_button.pack(pady=10)
 
-# Output text (read-only)
-tk.Label(root, text="Decoded Output:").pack(pady=5)
-output_text = tk.Text(root, height=5, width=50, state="disabled")
-output_text.pack()
+# --- Output Frame ---
+output_frame = tk.LabelFrame(root, text="Decoded Output", padx=10, pady=10, font=("Arial", 10, "bold"))
+output_frame.pack(fill="both", padx=15, pady=10, expand=True)
+
+output_text = tk.Text(output_frame, height=7, width=70, font=("Arial", 10), wrap="word", state="disabled", bg="#e8e8e8")
+output_text.pack(fill="both", expand=True)
 
 root.mainloop()
