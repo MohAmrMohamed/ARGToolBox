@@ -30,4 +30,3 @@ def decryptMorse(text):
         decrypted += " "
     return decrypted
 
-print(decryptMorse(".... . .-.. .-.. ---  .... . .-.. .-.. ---"))

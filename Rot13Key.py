@@ -8,5 +8,4 @@ def decryptROT13(text):
         decrypted += letter
     return decrypted
 
-print(decryptROT13("URYYB URYYB")) 
 # Need to fix spaces and special charachters

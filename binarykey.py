@@ -7,4 +7,3 @@ def decryptBinary(text):
         letter = chr(num)
         decrypted += letter
     return decrypted
-print(decryptBinary("00110001 00110010 00110011"))

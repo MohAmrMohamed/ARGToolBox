@@ -1,9 +1,7 @@
-def decryptBASE64(text): 
-    Charachters = list(text.upper())
-    decrypted = ""
-    for char in Charachters:
-        current = ord(char)
-        updated = 25 - (ord(char) - 65) %26 + 65
-        letter = chr(updated)
-        decrypted += letter
-    return decrypted
+import base64
+
+def decryptBASE64(text):
+    decoded = base64.b64decode(text)
+    decodedLine = decoded.decode('utf-8') 
+    return decodedLine
+
