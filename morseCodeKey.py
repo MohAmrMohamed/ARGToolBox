@@ -1,5 +1,6 @@
-# This dictionary holds all morse code definitions
-morseCodeDict = {
+import re
+
+MORSE_TO_TEXT = {
     '.-': 'A', '-...': 'B', '-.-.': 'C', '-..': 'D',
     '.': 'E', '..-.': 'F', '--.': 'G', '....': 'H',
     '..': 'I', '.---': 'J', '-.-': 'K', '.-..': 'L',
@@ -11,23 +12,22 @@ morseCodeDict = {
     '....-': '4', '.....': '5', '-....': '6', '--...': '7',
     '---..': '8', '----.': '9',
     '.-.-.-': '.', '--..--': ',', '..--..': '?', '-..-.': '/',
-    '-....-': '-', '-.--.': '(', '-.--.-': ')', '.----.': '\'',
+    '-....-': '-', '-.--.': '(', '-.--.-': ')', '.----.': "'",
     '-.-.--': '!', '-...-': '=', '.-.-.': '+', '.-..-.': '"',
-    '---...': ':', '-.-.-.': ';', '.-...': '&', '-...-': '=',
-    '-.--.': '@', '...-..-': '$'
+    '---...': ':', '-.-.-.': ';', '.-...': '&', '-.--.': '@',
+    '...-..-': '$'
 }
 
-
-def morseCodeConverter(code):
-    words = code.split('   ') # Split the input when there are 3 spaces
-    decodedMessage = [] 
+def decryptMorse(text):
+    text = re.sub(r"\s{2,}", "   ", text)
+    words = text.split("   ")
+    decrypted = ""
     for word in words:
-        letters = word.split(' ') # Splits letters when there is a space
-        decodedWord = ''
-        for letter in letters:
-            if letter in morseCodeDict: # Checks if code is in dict
-                decodedWord += morseCodeDict[letter] # Adds to the message
-        decodedMessage.append(decodedWord) 
-    finalMessage = ' '.join(decodedMessage) # Converts the list into a string
-    return finalMessage
+        chunks = word.split(" ")
+        for chunk in chunks:
+            letter = MORSE_TO_TEXT[chunk]
+            decrypted += letter
+        decrypted += " "
+    return decrypted
 
+print(decryptMorse(".... . .-.. .-.. ---  .... . .-.. .-.. ---"))
